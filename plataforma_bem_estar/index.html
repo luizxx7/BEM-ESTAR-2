@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plataforma de Bem-Estar 2.0</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🌿 Plataforma de Bem-Estar Emocional</h1>
+    <nav>
+      <ul>
+        <li><a href="#gratidao">Diário da Gratidão</a></li>
+        <li><a href="#meditacao">Meditação Guiada</a></li>
+        <li><a href="#dicas">Dicas de Bem-Estar</a></li>
+        <li><a href="#humor">Questionário de Humor</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="gratidao">
+      <h2>✨ Diário da Gratidão</h2>
+      <textarea id="gratidaoTexto" placeholder="Escreva 3 coisas pelas quais você é grato hoje..."></textarea>
+      <button onclick="salvarGratidao()">Salvar Gratidão</button>
+      <div id="listaGratidao"></div>
+    </section>
+
+    <section id="meditacao">
+      <h2>🧘 Meditação Guiada</h2>
+      <p>Respire fundo, feche os olhos e ouça essa meditação relaxante.</p>
+      <audio controls>
+        <source src="https://cdn.pixabay.com/download/audio/2023/03/30/audio_22cce1f55a.mp3" type="audio/mpeg" />
+        Seu navegador não suporta áudio.
+      </audio>
+    </section>
+
+    <section id="dicas">
+      <h2>💡 Dicas de Bem-Estar</h2>
+      <ul id="listaDicas"></ul>
+    </section>
+
+    <section id="humor">
+      <h2>😊 Como você está se sentindo hoje?</h2>
+      <form id="formHumor">
+        <label><input type="radio" name="humor" value="Feliz" /> Feliz</label>
+        <label><input type="radio" name="humor" value="Triste" /> Triste</label>
+        <label><input type="radio" name="humor" value="Ansioso" /> Ansioso</label>
+        <label><input type="radio" name="humor" value="Calmo" /> Calmo</label>
+        <button type="submit">Enviar</button>
+      </form>
+      <div id="respostaHumor"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Plataforma de Bem-Estar | Criado com ❤️ para promover o equilíbrio</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
