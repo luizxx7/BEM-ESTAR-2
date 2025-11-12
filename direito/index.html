@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Plataforma de Bem-Estar — diário de gratidão, meditações guiadas, metas e teste de humor. Versão 2.0 com recursos offline." />
+  <title>Plataforma de Bem-Estar — v2.0</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Plataforma de Bem-Estar</h1>
+        <p class="tag">Diário, meditação e metas — cuide do seu dia</p>
+      </div>
+
+      <div class="controls">
+        <label class="theme-toggle" title="Alternar tema">
+          <input id="toggleTheme" type="checkbox" aria-label="Alternar tema escuro/Claro" />
+          <span class="toggle-ui"></span>
+        </label>
+
+        <select id="profileSelect" aria-label="Selecionar perfil"></select>
+        <button id="btnNewProfile" class="btn small">Novo perfil</button>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <ul class="container nav-list" role="navigation" aria-label="Navegação principal">
+        <li><a href="#gratidao">Diário da Gratidão</a></li>
+        <li><a href="#meditacao">Meditações</a></li>
+        <li><a href="#dicas">Dicas</a></li>
+        <li><a href="#metas">Metas Positivas</a></li>
+        <li><a href="#humor">Questionário de Humor</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container main-grid">
+    <!-- Gratidão -->
+    <section id="gratidao" class="card">
+      <header class="section-head">
+        <h2>Diário da Gratidão</h2>
+        <div class="meta-info">
+          <span id="gratidaoStreak" title="Sequência de dias seguidos">🔥 Streak: 0</span>
+          <button id="exportGratidao" class="btn small">Exportar (TXT)</button>
+          <button id="printGratidao" class="btn ghost small">Imprimir</button>
+        </div>
+      </header>
+
+      <div class="card-body">
+        <label for="gratidaoTexto" class="sr-only">Escreva suas gratidões</label>
+        <textarea id="gratidaoTexto" rows="3" placeholder="Escreva aqui 3 coisas pelas quais você é grato hoje..."></textarea>
+
+        <div class="row">
+          <button id="btnSalvarGratidao" class="btn">Salvar Gratidão</button>
+          <button id="btnVoiceGratidao" class="btn ghost" title="Ditar gratidão" aria-pressed="false">🎙️ Ditar</button>
+        </div>
+
+        <h3>Últimas entradas</h3>
+        <div id="listaGratidao" class="list"></div>
+      </div>
+    </section>
+
+   <!-- Meditação -->
+    <section id="meditacao" class="card">
+      <header class="section-head">
+        <h2>Meditações Guiadas</h2>
+      </header>
+      <div class="card-body">
+        <p>Escolha uma meditação e relaxe.</p>
+        <div class="meditation-player">
+          <select id="meditacaoSelect" aria-label="Selecione meditação">
+            <option value="">— Selecionar —</option>
+            <option value="meditacao.mp3">Meditação 1 (5 min)</option>
+            <option value="meditacao2.mp3">Meditação 2 (8 min)</option>
+          </select>
+          <audio id="meditacaoAudio" controls preload="none">
+            <source id="meditacaoSource" src="" type="audio/mpeg" />
+            Seu navegador não suporta áudio.
+          </audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dicas -->
+    <aside id="dicas" class="card">
+      <header class="section-head"><h2>Dicas de Bem-Estar</h2></header>
+      <div class="card-body">
+        <ul id="listaDicas" class="list"></ul>
+        <button id="btnFraseAleatoria" class="btn small">Mostrar frase motivacional</button>
+        <div id="fraseBox" class="quote" aria-live="polite"></div>
+      </div>
+    </aside>
+
+    <!-- Metas -->
+    <section id="metas" class="card">
+      <header class="section-head"><h2>Metas Positivas</h2></header>
+      <div class="card-body">
+        <div class="row">
+          <input id="metaInput" type="text" placeholder="Escreva uma meta curta..." aria-label="Nova meta" />
+          <button id="btnAddMeta" class="btn">Adicionar Meta</button>
+        </div>
+        <ul id="listaMetas" class="list"></ul>
+        <div class="meta-actions">
+          <button id="exportMetas" class="btn small">Exportar metas</button>
+          <button id="clearMetas" class="btn ghost small">Limpar metas</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Humor -->
+    <section id="humor" class="card">
+      <header class="section-head"><h2>Como você está se sentindo hoje?</h2></header>
+      <div class="card-body">
+        <form id="formHumor" aria-label="Formulário de humor">
+          <fieldset>
+            <legend class="sr-only">Escolha seu humor</legend>
+            <label><input type="radio" name="humor" value="Feliz" /> Feliz</label>
+            <label><input type="radio" name="humor" value="Triste" /> Triste</label>
+            <label><input type="radio" name="humor" value="Ansioso" /> Ansioso</label>
+            <label><input type="radio" name="humor" value="Calmo" /> Calmo</label>
+          </fieldset>
+          <div class="row">
+            <button type="submit" class="btn">Enviar</button>
+            <button id="btnHistoricoHumor" type="button" class="btn ghost small">Histórico</button>
+          </div>
+        </form>
+
+        <div id="respostaHumor" class="feedback" aria-live="polite"></div>
+        <div id="historicoHumor" class="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Plataforma de Bem-Estar | Desenvolvido para fins acadêmicos</p>
+      <small>Dados armazenados localmente no seu navegador.</small>
+    </div>
+  </footer>
+
+  <!-- Simple modal for creating profile -->
+  <div id="modalProfile" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Criar novo perfil</h3>
+      <input id="inputProfileName" type="text" placeholder="Seu nome (ex.: Maria)" />
+      <div class="row">
+        <button id="saveProfile" class="btn">Salvar</button>
+        <button id="cancelProfile" class="btn ghost">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
